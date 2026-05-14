@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Piano Nutrizionale</title>
+    <style>
+        :root {
+            --primary: #4A7C59;
+            --secondary: #8FC0A9;
+            --background: #F4F1DE;
+            --surface: #FFFFFF;
+            --text-main: #333333;
+            --text-light: #666666;
+            --accent: #E07A5F;
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            font-size: 18px; /* Caratteri grandi e leggibili */
+            line-height: 1.5;
+            padding-bottom: 30px;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Selettore Giorni */
+        .day-selector {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding-bottom: 5px;
+            scrollbar-width: none; /* Firefox */
+        }
+        .day-selector::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .day-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 1rem;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .day-btn.active {
+            background: white;
+            color: var(--primary);
+            font-weight: 700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Selettore Pasti (Tabs) */
+        .meal-tabs {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 15px;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .meal-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px 5px;
+            font-size: 1.8rem; /* Icone grandi */
+            background: transparent;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            position: relative;
+        }
+
+        .meal-tab span {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        .meal-tab.active {
+            background: var(--secondary);
+            transform: scale(1.05);
+        }
+
+        .meal-tab.active span {
+            color: white;
+        }
+
+        /* Scheda Contenuto */
+        .card-container {
+            padding: 0 15px;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--border-radius);
+            padding: 25px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            min-height: 300px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--background);
+            padding-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .content-text {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .content-text ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .content-text li {
+            margin-bottom: 12px;
+            padding-left: 5px;
+        }
+
+        .content-text li::marker {
+            color: var(--accent);
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .water-reminder {
+            background: #E0F7FA;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #00BCD4;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌿 La Mia Dieta</h1>
+        <div class="day-selector" id="daySelector">
+            <button class="day-btn" onclick="selectDay(0)">Lun</button>
+            <button class="day-btn" onclick="selectDay(1)">Mar</button>
+            <button class="day-btn" onclick="selectDay(2)">Mer</button>
+            <button class="day-btn" onclick="selectDay(3)">Gio</button>
+            <button class="day-btn" onclick="selectDay(4)">Ven</button>
+            <button class="day-btn" onclick="selectDay(5)">Sab</button>
+            <button class="day-btn" onclick="selectDay(6)">Dom</button>
+        </div>
+    </header>
+
+    <div class="meal-tabs">
+        <button class="meal-tab" onclick="selectMeal('colazione')" id="tab-colazione">
+            ☕<span>Colazione</span>
+        </button>
+        <button class="meal-tab" onclick="selectMeal('spuntino1')" id="tab-spuntino1">
+            🍎<span>Spuntino</span>
+        </button>
+        <button class="meal-tab" onclick="selectMeal('pranzo')" id="tab-pranzo">
+            🥗<span>Pranzo</span>
+        </button>
+        <button class="meal-tab" onclick="selectMeal('spuntino2')" id="tab-spuntino2">
+            🥪<span>Merenda</span>
+        </button>
+        <button class="meal-tab" onclick="selectMeal('cena')" id="tab-cena">
+            🍲<span>Cena</span>
+        </button>
+    </div>
+
+    <div class="card-container">
+        <div class="card" id="mealCard">
+            </div>
+    </div>
+
+    <script>
+        // Dati fissi per colazione e spuntini
+        const pastiFissi = {
+            colazione: `
+                <div class="water-reminder">💧 <strong>Appena sveglio:</strong> bere un bicchiere di acqua.</div>
+                <strong>Scegli una delle seguenti alternative:</strong>
+                <ul>
+                    <li>🥛 Latte di avena o di cocco 250g + 6 biscotti secchi o 40g muesli o 3-4 fette biscottate con marmellata/miele.</li>
+                    <li>☕ Caffè macchiato + 3-4 fette biscottate con burro/marmellata o ricotta e marmellata.</li>
+                    <li>🍊 Spremuta arancia + uovo alla coque o strapazzato.</li>
+                    <li>🍞 Caffè + fetta pane tostato/segale 50g con ricotta 60g e miele/marmellata 10g.</li>
+                </ul>`,
+            spuntino1: `
+                <strong>Scegli una delle seguenti alternative (Ore 10:30):</strong>
+                <ul>
+                    <li>🥜 12 mandorle o 4 noci o 6 nocciole</li>
+                    <li>🌰 20 pistacchi o 20g anacardi</li>
+                    <li>🍏 30g mela essiccata</li>
+                    <li>🍫 Barretta cereali 90 kcal o cocco e cioccolato</li>
+                    <li>🍘 Crackers di farro</li>
+                    <li>🍈 Melone 300g o un frutto a piacere</li>
+                    <li>🍪 Un pacchetto di pavesini</li>
+                    <li>🍫 3 quadratini di cioccolata fondente</li>
+                    <li>🥣 Uno yogurt bianco (anche greco)</li>
+                    <li>🌰 6 castagne</li>
+                </ul>`,
+            spuntino2: `
+                <strong>Scegli una delle seguenti alternative (Ore 16:30):</strong>
+                <ul>
+                    <li>🍎 Frutto a piacere 200g</li>
+                    <li>🥑 2 gallette di farro con polpa di avocado/limone o hummus</li>
+                    <li>🫒 5 olive verdi</li>
+                    <li>🥥 30g di cocco fresco</li>
+                    <li>🧃 2 biscotti secchi di avena + centrifuga o spremuta</li>
+                    <li>🥕 200g di carote crude o finocchi</li>
+                    <li>🧀 20g di parmigiano</li>
+                    <li>🍑 2-3 susine o prugne</li>
+                    <li>🍘 Un pacchetto di crackers integrali</li>
+                </ul>`
+        };
+
+        // Dati variabili per giorno
+        const menuGiornaliero = [
+            { // 0 - Lunedì
+                nome: "Lunedì",
+                pranzo: "🥩 Carne magra 150g o pesce 160g o frittata (2 uova)<br><br>🥗 Verdura<br><br>🍞 Pane integrale 70g o legumi secchi 50g o freschi 180g o riso basmati 80g.",
+                cena: "🥗 <strong>Iniziare con:</strong> Insalata con noci, semi oleosi, sedani, carote, olive o scaglie di parmigiano.<br><br>🍝 <strong>A seguire:</strong> Pasta integrale o riso venere/integrale 70g con ricotta 70g e pepe OPPURE philadelphia/robiola 60g OPPURE burro e parmigiano 20g OPPURE con tonno/salmone/spigola/alici."
+            },
+            { // 1 - Martedì
+                nome: "Martedì",
+                pranzo: "🥩 Carne magra o pesce o frittata + verdura + pane o legumi<br><br><span class='highlight'>OPPURE</span><br><br>🥗 Insalatona mista con formaggio + pane integrale 70g o legumi secchi 70g o freschi 180g.",
+                cena: "🥦 <strong>Iniziare con:</strong> Contorno cotto o minestrone o vellutata di verdure.<br><br>🐟 <strong>A seguire:</strong> Pesce a piacere con patate al forno 200g."
+            },
+            { // 2 - Mercoledì
+                nome: "Mercoledì",
+                pranzo: "🥩 Carne magra 150g<br><br>🍚 Riso basmati 80g (lasciato bianco) o patate 200g.",
+                cena: "🍎 <strong>Iniziare con:</strong> Una mela o una pera.<br><br>🍳 <strong>Poi:</strong> Omelette (1 uovo + prosciutto cotto 50g) o frittata con 2 uova e zucchine.<br><br>🥗 Insalatona con noci, carote, sedani, pomodori.<br><br>🍞 Pane integrale 70g."
+            },
+            { // 3 - Giovedì
+                nome: "Giovedì",
+                pranzo: "🐟 Pesce 180g o frittata<br><br>🥗 Verdura<br><br>🥔 Patate 200g o riso venere 80g.",
+                cena: "🥗 <strong>Iniziare con:</strong> Insalata con noci, semi oleosi, sedani, carote, olive o scaglie di parmigiano.<br><br>🍝 <strong>A seguire:</strong> Pasta integrale 70g con pesto e parmigiano (1 cucchiaio).<br><br>🍎 Una mela."
+            },
+            { // 4 - Venerdì
+                nome: "Venerdì",
+                pranzo: "🥗 Insalatona con carote, sedani, peperoni crudi, cetrioli e cipolle + feta 100g o mozzarella 70g.<br><br>🍞 Pane integrale 70g.<br><br>🍑 Una pesca.",
+                cena: "🥦 <strong>Iniziare con:</strong> Contorno cotto o minestrone o vellutata di verdure + crostini di pane tostato 20g.<br><br>🐟 <strong>A seguire:</strong> Orata 200g al cartoccio o spigola al sale/agrumi + patate 200g."
+            },
+            { // 5 - Sabato
+                nome: "Sabato",
+                pranzo: "🥗 <strong>Iniziare con:</strong> Contorno crudo a piacere condito con poco olio e aceto.<br><br>🍝 <strong>A seguire:</strong> Pasta integrale 80g con vongole 130g/pachino o ragù 60g/cipolla o salmone 80g/zucchine o tonno 80g/pomodoro.<br><br>🥜 3 noci.",
+                cena: "🍕 <strong>Libera</strong> (Es. pizza a lenta lievitazione)."
+            },
+            { // 6 - Domenica
+                nome: "Domenica",
+                pranzo: "🍎 <strong>Iniziare con:</strong> Una mela.<br><br>🥩 Carne rossa 150g o pesce bianco 200g + contorno a piacere.<br><br>🍞 Pane integrale 40g.",
+                cena: "🍐 <strong>Iniziare con:</strong> Una pera.<br><br>🥩 <strong>Poi:</strong> Bresaola 90g + rucola + parmigiano 20g + pane integrale 60g<br><br><span class='highlight'>OPPURE</span><br><br>🍲 Minestrone di verdure con legumi e parmigiano 20g + pane tostato 60g."
+            }
+        ];
+
+        let currentDayIndex = 0;
+        let currentMealType = 'colazione';
+
+        const mealTitles = {
+            'colazione': '☕ Colazione',
+            'spuntino1': '🍎 Spuntino Mattina',
+            'pranzo': '🥗 Pranzo',
+            'spuntino2': '🥪 Spuntino Pomeriggio',
+            'cena': '🍲 Cena'
+        };
+
+        // Inizializzazione basata sull'orario
+        function initApp() {
+            const now = new Date();
+            let day = now.getDay(); // 0 = Dom, 1 = Lun...
+            let hour = now.getHours();
+
+            // Mappatura giorni per l'array (0 = Lun, 6 = Dom)
+            let mappedDay = (day === 0) ? 6 : day - 1;
+            let mealType = 'colazione';
+
+            // Logica per determinare il pasto successivo
+            if (hour >= 22) {
+                mealType = 'colazione';
+                mappedDay = (mappedDay + 1) % 7; // Scatta al giorno successivo
+            } else if (hour >= 0 && hour < 8) {
+                mealType = 'colazione';
+            } else if (hour >= 8 && hour < 11) {
+                mealType = 'spuntino1';
+            } else if (hour >= 11 && hour < 14) {
+                mealType = 'pranzo';
+            } else if (hour >= 14 && hour < 17) {
+                mealType = 'spuntino2';
+            } else if (hour >= 17 && hour < 22) {
+                mealType = 'cena';
+            }
+
+            selectDay(mappedDay);
+            selectMeal(mealType);
+            
+            // Centra il pulsante del giorno selezionato
+            const btn = document.querySelectorAll('.day-btn')[mappedDay];
+            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+
+        function selectDay(index) {
+            currentDayIndex = index;
+            
+            // Aggiorna UI Pulsanti Giorno
+            const btns = document.querySelectorAll('.day-btn');
+            btns.forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+
+            updateCard();
+        }
+
+        function selectMeal(type) {
+            currentMealType = type;
+
+            // Aggiorna UI Tabs Pasti
+            const tabs = document.querySelectorAll('.meal-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.getElementById('tab-' + type).classList.add('active');
+
+            updateCard();
+        }
+
+        function updateCard() {
+            const card = document.getElementById('mealCard');
+            const dayName = menuGiornaliero[currentDayIndex].nome;
+            let contentHtml = '';
+
+            // Rimuove e riaggiunge l'animazione per l'effetto sfoglio
+            card.style.animation = 'none';
+            card.offsetHeight; /* trigger reflow */
+            card.style.animation = 'fadeIn 0.4s ease';
+
+            if (currentMealType === 'colazione' || currentMealType === 'spuntino1' || currentMealType === 'spuntino2') {
+                contentHtml = pastiFissi[currentMealType];
+            } else if (currentMealType === 'pranzo') {
+                contentHtml = menuGiornaliero[currentDayIndex].pranzo;
+            } else if (currentMealType === 'cena') {
+                contentHtml = menuGiornaliero[currentDayIndex].cena;
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-title">${mealTitles[currentMealType]} - ${dayName}</div>
+                </div>
+                <div class="content-text">
+                    ${contentHtml}
+                </div>
+            `;
+        }
+
+        // Avvia l'app al caricamento della pagina
+        window.onload = initApp;
+    </script>
+</body>
+</html>
