@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Piano Nutrizionale</title>
+    <title>iDieta</title>
     
-    <link rel="apple-touch-icon" sizes="180x180" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Apple_Health_icon.svg/180px-Apple_Health_icon.svg.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://fabiusai.github.io/dieta/iDieta.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="La Mia Dieta">
+    <meta name="apple-mobile-web-app-title" content="iDieta">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -23,7 +23,7 @@
             --text-light: #86868b;
             --accent: #007aff;
             --border-radius: 24px;
-            --base-font-size: 22px; /* Dimensione Font Aumentata */
+            --base-font-size: 24px; /* Dimensione Font Aumentata */
         }
 
         * {
@@ -271,7 +271,7 @@
 
     <header>
         <div class="header-top">
-            <h1><i data-lucide="leaf" style="color:var(--accent);"></i> La Mia Dieta</h1>
+            <h1><i data-lucide="heart-pulse" style="color:#ff2d55;"></i> iDieta</h1>
             <div class="font-controls">
                 <button class="font-btn" onclick="changeFontSize(-2)" aria-label="Riduci testo">
                     <i data-lucide="minus-circle"></i>
@@ -317,7 +317,7 @@
 
     <script>
         // Gestione Regolazione Dimensione Font
-        let currentFontSize = 22;
+        let currentFontSize = 24;
         function changeFontSize(delta) {
             currentFontSize = Math.max(16, Math.min(36, currentFontSize + delta));
             document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
@@ -326,40 +326,40 @@
         // Dati fissi per colazione e spuntini
         const pastiFissi = {
             colazione: `
-                <div class="water-reminder"><i data-lucide="droplet" style="color:var(--accent);"></i> <strong>Appena sveglio:</strong> bere un bicchiere di acqua.</div>
+                <div class="water-reminder"><i data-lucide="droplet" style="color: #007aff;"></i> <strong>Appena sveglio:</strong> bere un bicchiere di acqua.</div>
                 <strong>Scegli una delle seguenti alternative:</strong>
                 <ul>
-                    <li><i data-lucide="milk" class="lucide-inline"></i> Latte di avena o di cocco 250g + 6 biscotti secchi o 40g muesli o 3-4 fette biscottate con marmellata/miele.</li>
-                    <li><i data-lucide="coffee" class="lucide-inline"></i> Caffè macchiato + 3-4 fette biscottate con burro/marmellata o ricotta e marmellata.</li>
-                    <li><i data-lucide="citrus" class="lucide-inline"></i> Spremuta arancia + uovo alla coque o strapazzato.</li>
-                    <li><i data-lucide="croissant" class="lucide-inline"></i> Caffè + fetta pane tostato/segale 50g con ricotta 60g e miele/marmellata 10g.</li>
+                    <li><i data-lucide="milk" class="lucide-inline" style="color: #5ac8fa;"></i> Latte di avena o di cocco 250g + <i data-lucide="cookie" class="lucide-inline" style="color: #b37d4e; width: 20px;"></i> 6 biscotti secchi o 40g muesli o 3-4 fette biscottate con marmellata/miele.</li>
+                    <li><i data-lucide="coffee" class="lucide-inline" style="color: #583d28;"></i> Caffè macchiato + <i data-lucide="wheat" class="lucide-inline" style="color: #e58e26; width: 20px;"></i> 3-4 fette biscottate con burro/marmellata o ricotta e marmellata.</li>
+                    <li><i data-lucide="citrus" class="lucide-inline" style="color: #ff9500;"></i> Spremuta arancia + <i data-lucide="egg" class="lucide-inline" style="color: #ffcc00; width: 20px;"></i> uovo alla coque o strapazzato.</li>
+                    <li><i data-lucide="croissant" class="lucide-inline" style="color: #e58e26;"></i> Caffè + fetta pane tostato/segale 50g con ricotta 60g e miele/marmellata 10g.</li>
                 </ul>`,
             spuntino1: `
                 <strong>Scegli una delle seguenti alternative (Ore 10:30):</strong>
                 <ul>
-                    <li><i data-lucide="nut" class="lucide-inline"></i> 12 mandorle o 4 noci o 6 nocciole</li>
-                    <li><i data-lucide="nut" class="lucide-inline"></i> 20 pistacchi o 20g anacardi</li>
-                    <li><i data-lucide="apple" class="lucide-inline"></i> 30g mela essiccata</li>
-                    <li><i data-lucide="candy" class="lucide-inline"></i> Barretta cereali 90 kcal o cocco e cioccolato</li>
-                    <li><i data-lucide="cookie" class="lucide-inline"></i> Crackers di farro</li>
-                    <li><i data-lucide="grape" class="lucide-inline"></i> Melone 300g o un frutto a piacere</li>
-                    <li><i data-lucide="cookie" class="lucide-inline"></i> Un pacchetto di pavesini</li>
-                    <li><i data-lucide="candy" class="lucide-inline"></i> 3 quadratini di cioccolata fondente</li>
-                    <li><i data-lucide="cup-soda" class="lucide-inline"></i> Uno yogurt bianco (anche greco)</li>
-                    <li><i data-lucide="nut" class="lucide-inline"></i> 6 castagne</li>
+                    <li><i data-lucide="nut" class="lucide-inline" style="color: #a2845e;"></i> 12 mandorle o 4 noci o 6 nocciole</li>
+                    <li><i data-lucide="nut" class="lucide-inline" style="color: #a2845e;"></i> 20 pistacchi o 20g anacardi</li>
+                    <li><i data-lucide="apple" class="lucide-inline" style="color: #ff3b30;"></i> 30g mela essiccata</li>
+                    <li><i data-lucide="candy" class="lucide-inline" style="color: #ff2d55;"></i> Barretta cereali 90 kcal o cocco e cioccolato</li>
+                    <li><i data-lucide="cookie" class="lucide-inline" style="color: #b37d4e;"></i> Crackers di farro</li>
+                    <li><i data-lucide="grapes" class="lucide-inline" style="color: #af52de;"></i> Melone 300g o un frutto a piacere</li>
+                    <li><i data-lucide="cookie" class="lucide-inline" style="color: #e58e26;"></i> Un pacchetto di pavesini</li>
+                    <li><i data-lucide="candy" class="lucide-inline" style="color: #583d28;"></i> 3 quadratini di cioccolata fondente</li>
+                    <li><i data-lucide="milk" class="lucide-inline" style="color: #4cd964;"></i> Uno yogurt bianco (anche greco)</li>
+                    <li><i data-lucide="nut" class="lucide-inline" style="color: #8d6e63;"></i> 6 castagne</li>
                 </ul>`,
             spuntino2: `
                 <strong>Scegli una delle seguenti alternative (Ore 16:30):</strong>
                 <ul>
-                    <li><i data-lucide="apple" class="lucide-inline"></i> Frutto a piacere 200g</li>
-                    <li><i data-lucide="cookie" class="lucide-inline"></i> 2 gallette di farro con polpa di avocado/limone o hummus</li>
-                    <li><i data-lucide="circle" class="lucide-inline"></i> 5 olive verdi</li>
-                    <li><i data-lucide="citrus" class="lucide-inline"></i> 30g di cocco fresco</li>
-                    <li><i data-lucide="cup-soda" class="lucide-inline"></i> 2 biscotti secchi di avena + centrifuga o spremuta</li>
-                    <li><i data-lucide="carrot" class="lucide-inline"></i> 200g di carote crude o finocchi</li>
-                    <li><i data-lucide="cheese" class="lucide-inline"></i> 20g di parmigiano</li>
-                    <li><i data-lucide="cherry" class="lucide-inline"></i> 2-3 susine o prugne</li>
-                    <li><i data-lucide="cookie" class="lucide-inline"></i> Un pacchetto di crackers integrali</li>
+                    <li><i data-lucide="apple" class="lucide-inline" style="color: #ff3b30;"></i> Frutto a piacere 200g</li>
+                    <li><i data-lucide="cookie" class="lucide-inline" style="color: #b37d4e;"></i> 2 gallette di farro con polpa di avocado/limone o hummus</li>
+                    <li><i data-lucide="circle-dot" class="lucide-inline" style="color: #34c759;"></i> 5 olive verdi</li>
+                    <li><i data-lucide="citrus" class="lucide-inline" style="color: #ffcc00;"></i> 30g di cocco fresco</li>
+                    <li><i data-lucide="cup-soda" class="lucide-inline" style="color: #ff9500;"></i> 2 biscotti secchi di avena + centrifuga o spremuta</li>
+                    <li><i data-lucide="carrot" class="lucide-inline" style="color: #ff9500;"></i> 200g di carote crude o finocchi</li>
+                    <li><i data-lucide="triangle" class="lucide-inline" style="color: #ffcc00; fill: #ffcc00;"></i> 20g di parmigiano</li>
+                    <li><i data-lucide="cherry" class="lucide-inline" style="color: #ff2d55;"></i> 2-3 susine o prugne</li>
+                    <li><i data-lucide="cookie" class="lucide-inline" style="color: #e58e26;"></i> Un pacchetto di crackers integrali</li>
                 </ul>`
         };
 
@@ -367,38 +367,38 @@
         const menuGiornaliero = [
             { // 0 - Lunedì
                 nome: "Lunedì",
-                pranzo: "<i data-lucide='beef' class='lucide-inline'></i> Carne magra 150g o pesce 160g o frittata (2 uova)<br><br><i data-lucide='salad' class='lucide-inline'></i> Verdura<br><br><i data-lucide='croissant' class='lucide-inline'></i> Pane integrale 70g o legumi secchi 50g o freschi 180g o riso basmati 80g.",
-                cena: "<i data-lucide='salad' class='lucide-inline'></i> <strong>Iniziare con:</strong> Insalata con noci, semi oleosi, sedani, carote, olive o scaglie di parmigiano.<br><br><i data-lucide='utensils' class='lucide-inline'></i> <strong>A seguire:</strong> Pasta integrale o riso venere/integrale 70g con ricotta 70g e pepe OPPURE philadelphia/robiola 60g OPPURE burro e parmigiano 20g OPPURE con tonno/salmone/spigola/alici."
+                pranzo: "<i data-lucide='beef' class='lucide-inline' style='color: #ff3b30;'></i> Carne magra 150g o <i data-lucide='fish' class='lucide-inline' style='color: #007aff;'></i> pesce 160g o <i data-lucide='egg' class='lucide-inline' style='color: #ffcc00;'></i> frittata (2 uova)<br><br><i data-lucide='leaf' class='lucide-inline' style='color: #34c759;'></i> Verdura<br><br><i data-lucide='wheat' class='lucide-inline' style='color: #e58e26;'></i> Pane integrale 70g o legumi secchi 50g o freschi 180g o <i data-lucide='cooking-pot' class='lucide-inline' style='color: #f4d03f;'></i> riso basmati 80g.",
+                cena: "<i data-lucide='salad' class='lucide-inline' style='color: #34c759;'></i> <strong>Iniziare con:</strong> Insalata con noci, semi oleosi, sedani, carote, olive o scaglie di parmigiano.<br><br><i data-lucide='cooking-pot' class='lucide-inline' style='color: #ff9500;'></i> <strong>A seguire:</strong> Pasta integrale o riso venere/integrale 70g con ricotta 70g e pepe OPPURE philadelphia/robiola 60g OPPURE burro e parmigiano 20g OPPURE con tonno/salmone/spigola/alici."
             },
             { // 1 - Martedì
                 nome: "Martedì",
-                pranzo: "<i data-lucide='beef' class='lucide-inline'></i> Carne magra o pesce o frittata + verdura + pane o legumi<br><br><span class='highlight'>OPPURE</span><br><br><i data-lucide='salad' class='lucide-inline'></i> Insalatona mista con formaggio + pane integrale 70g o legumi secchi 70g o freschi 180g.",
-                cena: "<i data-lucide='soup' class='lucide-inline'></i> <strong>Iniziare con:</strong> Contorno cotto o minestrone o vellutata di verdure.<br><br><i data-lucide='fish' class='lucide-inline'></i> <strong>A seguire:</strong> Pesce a piacere con patate al forno 200g."
+                pranzo: "<i data-lucide='beef' class='lucide-inline' style='color: #ff3b30;'></i> Carne magra o pesce o frittata + verdura + pane o legumi<br><br><span class='highlight'>OPPURE</span><br><br><i data-lucide='salad' class='lucide-inline' style='color: #34c759;'></i> Insalatona mista con formaggio + pane integrale 70g o legumi secchi 70g o freschi 180g.",
+                cena: "<i data-lucide='soup' class='lucide-inline' style='color: #ff9500;'></i> <strong>Iniziare con:</strong> Contorno cotto o minestrone o vellutata di verdure.<br><br><i data-lucide='fish' class='lucide-inline' style='color: #007aff;'></i> <strong>A seguire:</strong> Pesce a piacere con patate al forno 200g."
             },
             { // 2 - Mercoledì
                 nome: "Mercoledì",
-                pranzo: "<i data-lucide='beef' class='lucide-inline'></i> Carne magra 150g<br><br><i data-lucide='bowl' class='lucide-inline'></i> Riso basmati 80g (lasciato bianco) o patate 200g.",
-                cena: "<i data-lucide='apple' class='lucide-inline'></i> <strong>Iniziare con:</strong> Una mela o una pera.<br><br><i data-lucide='cooking-pot' class='lucide-inline'></i> <strong>Poi:</strong> Omelette (1 uovo + prosciutto cotto 50g) o frittata con 2 uova e zucchine.<br><br><i data-lucide='salad' class='lucide-inline'></i> Insalatona con noci, carote, sedani, pomodori.<br><br><i data-lucide='croissant' class='lucide-inline'></i> Pane integrale 70g."
+                pranzo: "<i data-lucide='beef' class='lucide-inline' style='color: #ff3b30;'></i> Carne magra 150g<br><br><i data-lucide='wheat' class='lucide-inline' style='color: #f4d03f;'></i> Riso basmati 80g (lasciato bianco) o patate 200g.",
+                cena: "<i data-lucide='apple' class='lucide-inline' style='color: #ff3b30;'></i> <strong>Iniziare con:</strong> Una mela o una pera.<br><br><i data-lucide='egg' class='lucide-inline' style='color: #ffcc00;'></i> <strong>Poi:</strong> Omelette (1 uovo + prosciutto cotto 50g) o frittata con 2 uova e zucchine.<br><br><i data-lucide='salad' class='lucide-inline' style='color: #34c759;'></i> Insalatona con noci, carote, sedani, pomodori.<br><br><i data-lucide='croissant' class='lucide-inline' style='color: #e58e26;'></i> Pane integrale 70g."
             },
             { // 3 - Giovedì
                 nome: "Giovedì",
-                pranzo: "<i data-lucide='fish' class='lucide-inline'></i> Pesce 180g o frittata<br><br><i data-lucide='salad' class='lucide-inline'></i> Verdura<br><br><i data-lucide='bean' class='lucide-inline'></i> Patate 200g o riso venere 80g.",
-                cena: "<i data-lucide='salad' class='lucide-inline'></i> <strong>Iniziare con:</strong> Insalata con noci, semi oleosi, sedani, carote, olive o scaglie di parmigiano.<br><br><i data-lucide='utensils' class='lucide-inline'></i> <strong>A seguire:</strong> Pasta integrale 70g con pesto e parmigiano (1 cucchiaio).<br><br><i data-lucide='apple' class='lucide-inline'></i> Una mela."
+                pranzo: "<i data-lucide='fish' class='lucide-inline' style='color: #007aff;'></i> Pesce 180g o frittata<br><br><i data-lucide='leaf' class='lucide-inline' style='color: #34c759;'></i> Verdura<br><br><i data-lucide='bean' class='lucide-inline' style='color: #8a9a5b;'></i> Patate 200g o riso venere 80g.",
+                cena: "<i data-lucide='salad' class='lucide-inline' style='color: #34c759;'></i> <strong>Iniziare con:</strong> Insalata con noci, semi oleosi, sedani, carote, olive o scaglie di parmigiano.<br><br><i data-lucide='cooking-pot' class='lucide-inline' style='color: #ff9500;'></i> <strong>A seguire:</strong> Pasta integrale 70g con pesto e parmigiano (1 cucchiaio).<br><br><i data-lucide='apple' class='lucide-inline' style='color: #ff3b30;'></i> Una mela."
             },
             { // 4 - Venerdì
                 nome: "Venerdì",
-                pranzo: "<i data-lucide='salad' class='lucide-inline'></i> Insalatona con carote, sedani, peperoni crudi, cetrioli e cipolle + feta 100g o mozzarella 70g.<br><br><i data-lucide='croissant' class='lucide-inline'></i> Pane integrale 70g.<br><br><i data-lucide='cherry' class='lucide-inline'></i> Una pesca.",
-                cena: "<i data-lucide='soup' class='lucide-inline'></i> <strong>Iniziare con:</strong> Contorno cotto o minestrone o vellutata di verdure + crostini di pane tostato 20g.<br><br><i data-lucide='fish' class='lucide-inline'></i> <strong>A seguire:</strong> Orata 200g al cartoccio o spigola al sale/agrumi + patate 200g."
+                pranzo: "<i data-lucide='salad' class='lucide-inline' style='color: #34c759;'></i> Insalatona con carote, sedani, peperoni crudi, cetrioli e cipolle + <i data-lucide='triangle' class='lucide-inline' style='color: #ffcc00; fill: #ffcc00;'></i> feta 100g o mozzarella 70g.<br><br><i data-lucide='croissant' class='lucide-inline' style='color: #e58e26;'></i> Pane integrale 70g.<br><br><i data-lucide='cherry' class='lucide-inline' style='color: #ff2d55;'></i> Una pesca.",
+                cena: "<i data-lucide='soup' class='lucide-inline' style='color: #ff9500;'></i> <strong>Iniziare con:</strong> Contorno cotto o minestrone o vellutata di verdure + crostini di pane tostato 20g.<br><br><i data-lucide='fish' class='lucide-inline' style='color: #007aff;'></i> <strong>A seguire:</strong> Orata 200g al cartoccio o spigola al sale/agrumi + patate 200g."
             },
             { // 5 - Sabato
                 nome: "Sabato",
-                pranzo: "<i data-lucide='salad' class='lucide-inline'></i> <strong>Iniziare con:</strong> Contorno crudo a piacere condito con poco olio e aceto.<br><br><i data-lucide='utensils' class='lucide-inline'></i> <strong>A seguire:</strong> Pasta integrale 80g con vongole 130g/pachino o ragù 60g/cipolla o salmone 80g/zucchine o tonno 80g/pomodoro.<br><br><i data-lucide='nut' class='lucide-inline'></i> 3 noci.",
-                cena: "<i data-lucide='pizza' class='lucide-inline'></i> <strong>Libera</strong> (Es. pizza a lenta lievitazione)."
+                pranzo: "<i data-lucide='salad' class='lucide-inline' style='color: #34c759;'></i> <strong>Iniziare con:</strong> Contorno crudo a piacere condito con poco olio e aceto.<br><br><i data-lucide='cooking-pot' class='lucide-inline' style='color: #ff9500;'></i> <strong>A seguire:</strong> Pasta integrale 80g con vongole 130g/pachino o ragù 60g/cipolla o salmone 80g/zucchine o tonno 80g/pomodoro.<br><br><i data-lucide='nut' class='lucide-inline' style='color: #a2845e;'></i> 3 noci.",
+                cena: "<i data-lucide='pizza' class='lucide-inline' style='color: #ff3b30;'></i> <strong>Libera</strong> (Es. pizza a lenta lievitazione)."
             },
             { // 6 - Domenica
                 nome: "Domenica",
-                pranzo: "<i data-lucide='apple' class='lucide-inline'></i> <strong>Iniziare con:</strong> Una mela.<br><br><i data-lucide='beef' class='lucide-inline'></i> Carne rossa 150g o pesce bianco 200g + contorno a piacere.<br><br><i data-lucide='croissant' class='lucide-inline'></i> Pane integrale 40g.",
-                cena: "<i data-lucide='apple' class='lucide-inline'></i> <strong>Iniziare con:</strong> Una pera.<br><br><i data-lucide='beef' class='lucide-inline'></i> <strong>Poi:</strong> Bresaola 90g + rucola + parmigiano 20g + pane integrale 60g<br><br><span class='highlight'>OPPURE</span><br><br><i data-lucide='soup' class='lucide-inline'></i> Minestrone di verdure con legumi e parmigiano 20g + pane tostato 60g."
+                pranzo: "<i data-lucide='apple' class='lucide-inline' style='color: #ff3b30;'></i> <strong>Iniziare con:</strong> Una mela.<br><br><i data-lucide='beef' class='lucide-inline' style='color: #ff3b30;'></i> Carne rossa 150g o <i data-lucide='fish' class='lucide-inline' style='color: #007aff;'></i> pesce bianco 200g + contorno a piacere.<br><br><i data-lucide='croissant' class='lucide-inline' style='color: #e58e26;'></i> Pane integrale 40g.",
+                cena: "<i data-lucide='apple' class='lucide-inline' style='color: #ff3b30;'></i> <strong>Iniziare con:</strong> Una pera.<br><br><i data-lucide='beef' class='lucide-inline' style='color: #ff3b30;'></i> <strong>Poi:</strong> Bresaola 90g + rucola + <i data-lucide='triangle' class='lucide-inline' style='color: #ffcc00; fill: #ffcc00;'></i> parmigiano 20g + pane integrale 60g<br><br><span class='highlight'>OPPURE</span><br><br><i data-lucide='soup' class='lucide-inline' style='color: #ff9500;'></i> Minestrone di verdure con legumi e parmigiano 20g + pane tostato 60g."
             }
         ];
 
@@ -406,11 +406,11 @@
         let currentMealType = 'colazione';
 
         const mealTitles = {
-            'colazione': '<i data-lucide="coffee"></i> Colazione',
-            'spuntino1': '<i data-lucide="apple"></i> Spuntino',
-            'pranzo': '<i data-lucide="utensils"></i> Pranzo',
-            'spuntino2': '<i data-lucide="croissant"></i> Merenda',
-            'cena': '<i data-lucide="utensils-crossed"></i> Cena'
+            'colazione': '<i data-lucide="coffee" style="color: #a2845e;"></i> Colazione',
+            'spuntino1': '<i data-lucide="apple" style="color: #ff3b30;"></i> Spuntino',
+            'pranzo': '<i data-lucide="utensils" style="color: #ff9500;"></i> Pranzo',
+            'spuntino2': '<i data-lucide="croissant" style="color: #e58e26;"></i> Merenda',
+            'cena': '<i data-lucide="utensils-crossed" style="color: #5856d6;"></i> Cena'
         };
 
         function initApp() {
